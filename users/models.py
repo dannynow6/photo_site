@@ -10,11 +10,11 @@ class Profile(models.Model):
     """a profile to extend Django's built in User model"""
 
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    bio = models.CharField(max_length=300, blank=True)
-    age = models.SmallIntegerField(blank=True)
-    location_city = models.CharField(max_length=200, blank=True)
-    location_state = models.CharField(max_length=200, blank=True)
-    location_country = models.CharField(max_length=200, blank=True)
+    bio = models.CharField(max_length=300, blank=True, null=True)
+    age = models.SmallIntegerField(blank=True, null=True)
+    location_city = models.CharField(max_length=200, blank=True, null=True)
+    location_state = models.CharField(max_length=200, blank=True, null=True)
+    location_country = models.CharField(max_length=200, blank=True, null=True)
 
     # called when new user saved to auto create profile
     @receiver(post_save, sender=User)
