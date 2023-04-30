@@ -1,0 +1,26 @@
+{% load static %} {% load bootstrap4 %} {% load bootstrap_icons %} 
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>{% block title %}Photo Site{% endblock title %}</title>
+        {% bootstrap_css %} {% bootstrap_javascript jquery='full' %} 
+        <!--<script src="{% static '/js/dg_photography.js' %}"></script>-->
+        <!--<link rel="stylesheet" type="text/css" href="{% static '/css/styles.css' %}">-->
+    </head>
+
+    <body>
+        <main>
+            {% block content %}
+            {% endblock content %}
+            <br />
+            <footer>
+                <div class="container text-center w-75 pt-4 border-top border-muted">
+                    {% bs_icon 'c-circle' %} Photo-Site, 2023 
+                </div>
+            </footer>
+        </main>
+    </body>
+</html>
