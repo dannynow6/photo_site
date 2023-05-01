@@ -11,4 +11,6 @@ urlpatterns = [
     path("register/", views.register, name="register"),
     # User profile 
     path("profile/<int:user_id>/", views.profile, name="profile"), 
+    # View user profile details 
+    path("view_profile/<int:user_id>/", views.view_profile, name="view_profile"), 
 ]
