@@ -36,7 +36,7 @@ def profile(request, user_id):
         # display a blank form
         form = ProfileForm(instance=profile)
     else:
-        form = ProfileForm(request.POST, instance=profile)
+        form = ProfileForm(request.POST, request.FILES, instance=profile)
 
         if form.is_valid():
             new_profile = form.save(commit=False)
@@ -45,8 +45,9 @@ def profile(request, user_id):
     context = {"profile": profile, "form": form}
     return render(request, "registration/profile.html", context)
 
+
 def view_profile(request, user_id):
     """User can view detailed profile info"""
     profile = Profile.objects.get(user=user_id)
-    context = {"profile": profile} 
+    context = {"profile": profile}
     return render(request, "registration/view_profile.html", context)

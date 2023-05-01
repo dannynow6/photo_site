@@ -22,7 +22,7 @@
         </article>
         <article>
             {% if profile.photo %}
-                <img src="{{ profile.photo.url }}" alt="{{user.username}} profile photo" />
+                <span class="d-flex justify-content-center"><img src="{{ profile.photo.url }}" alt="{{user.username}} profile photo" style="max-width:300px;max-height:300px;border-radius:40%" /></span>
             {% endif %}
         </article>
         <br/>
