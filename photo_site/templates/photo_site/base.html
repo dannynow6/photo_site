@@ -11,24 +11,33 @@
         <!--<link rel="stylesheet" type="text/css" href="{% static '/css/styles.css' %}">-->
     </head>
 
-    <body>
-        <ul class="nav justify-content-end p-4">
-            <li class="nav-item dropdown">
-              {% if user.is_authenticated %}
-              <a class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Hello, {{ user.username|title }}</a>
-              <div class="dropdown-menu">
-                <a class="dropdown-item" href="{% url 'users:view_profile' user.id %}">{% bs_icon 'person-badge' %}{{ user.username|title }}'s Profile</a>
-                <a class="dropdown-item" href="{% url 'users:logout' %}">{% bs_icon 'x-circle' %}Log out</a>
-              </div>
-              {% else %}
-              <a class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Sign in</a>
-              <div class="dropdown-menu">
-                <a class="dropdown-item" href="{% url 'users:register' %}">Register</a>
-                <a class="dropdown-item" href="{% url 'users:login' %}">Log in</a>
-              {% endif %}
-              </div>
-            </li>
-        </ul>
+    <body class="m-3">
+        <nav class="navbar navbar-expand-lg navbar-light shadow p-3 mb-5 bg-white rounded">
+            <a class="navbar-brand" href="{% url 'photo_site:index' %}">
+                <img src="{% static 'img/logo.png' %}" width="30" height="30" class="d-inline-block align-top" /> Photo Site
+            </a>
+        </nav>
+        <span class="d-flex justify-content-end mr-4 mb-2">
+            <div class="btn-group">
+                {% if user.is_authenticated %}
+                <button class="btn btn-outline-secondary dropdown-toggle text-secondary" type="button" data-toggle="dropdown" aria-expanded="false">
+                    Hello, {{ user.username|title }}
+                </button>
+                <div class="dropdown-menu">
+                    <a class="dropdown-item" href="{% url 'users:view_profile' user.id %}">{% bs_icon 'person-badge' %}{{ user.username|title }}'s Profile</a>
+                    <a class="dropdown-item" href="{% url 'users:logout' %}">{% bs_icon 'x-circle' %}Log out</a>
+                </div>
+                {% else %}
+                <button class="btn btn-outline-secondary btn-lg dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false">
+                    Sign in
+                </button>
+                <div class="dropdown-menu">
+                    <a class="dropdown-item" href="{% url 'users:register' %}">Register</a>
+                    <a class="dropdown-item" href="{% url 'users:login' %}">Log in</a>
+                </div>
+                {% endif %}
+            </div>
+        </span>
         <main>
             {% block content %}
             {% endblock content %}

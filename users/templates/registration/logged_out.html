@@ -6,6 +6,9 @@
     <br />
     <p class="text-center">You have been logged out.</p>
     <br />
-    <span class="d-flex justify-content-center"><button type="button" class="btn btn-outline-primary mx-2 mb-2"><a class="text-primary" href="{% url 'photo_site:index' %}">{% bs_icon 'house' size='1.25em' %}</a></button></span>
+    <span class="d-flex justify-content-center">
+        <button type="button" class="btn btn-outline-primary mx-2 mb-2"><a class="text-primary" href="{% url 'photo_site:index' %}">{% bs_icon 'house' size='1.25em' %}</a></button>
+        <button type="button" class="btn btn-outline-success mx-2 mb-2"><a class="text-success" href="{% url 'users:login' %}">{% bs_icon 'box-arrow-in-right' %} Sign in</a></button>
+    </span>
 </div>
 {% endblock content %}
