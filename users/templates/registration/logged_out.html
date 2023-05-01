@@ -1,9 +1,11 @@
-{% extends "photo_site/base.html" %} {% load static %} {% load bootstrap4 %}
+{% extends "photo_site/base.html" %} {% load static %} {% load bootstrap4 %} {% load bootstrap_icons %}
 {% block title %}Logged Out{% endblock title %}
 {% block content %}
 <div class="container w-75">
-    <h2 class="text-center text-secondary display-4 pb-3 border-bottom border-secondary">Thanks for visiting!</h2>
+    <h2 class="text-center text-secondary display-4 pb-3">Thanks for visiting!</h2>
     <br />
     <p class="text-center">You have been logged out.</p>
+    <br />
+    <span class="d-flex justify-content-center"><button type="button" class="btn btn-outline-primary mx-2 mb-2"><a class="text-primary" href="{% url 'photo_site:index' %}">{% bs_icon 'house' size='1.25em' %}</a></button></span>
 </div>
 {% endblock content %}
