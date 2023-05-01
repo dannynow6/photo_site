@@ -15,6 +15,7 @@ class Profile(models.Model):
     location_city = models.CharField(max_length=200, blank=True, null=True)
     location_state = models.CharField(max_length=200, blank=True, null=True)
     location_country = models.CharField(max_length=200, blank=True, null=True)
+    photo = models.ImageField(upload_to="photos/", blank=True, null=True)
 
     # called when new user saved to auto create profile
     @receiver(post_save, sender=User)

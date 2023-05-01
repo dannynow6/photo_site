@@ -37,6 +37,7 @@ class ProfileForm(forms.ModelForm):
             "location_city",
             "location_state",
             "location_country",
+            "photo",
         )
         labels = {
             "bio": "Short Bio",
@@ -44,4 +45,5 @@ class ProfileForm(forms.ModelForm):
             "location_city": "City",
             "location_state": "State",
             "location_country": "Country",
+            "photo": "Photo",
         }

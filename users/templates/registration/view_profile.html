@@ -20,6 +20,11 @@
             <h6>Location</h6>
             <p>{{ profile.location_city|title }}, {{ profile.location_state|title }}, {{ profile.location_country|upper }}</p>
         </article>
+        <article>
+            {% if profile.photo %}
+                <img src="{{ profile.photo.url }}" alt="{{user.username}} profile photo" />
+            {% endif %}
+        </article>
         <br/>
         <span class="d-flex justify-content-center">
             <button type="button" class="btn btn-outline-danger mx-2 mb-2"><a class="text-danger" href="{% url 'users:profile' user.id %}">{% bs_icon 'pencil' size="1.1em" %} Edit</a></button>
