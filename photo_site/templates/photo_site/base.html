@@ -17,28 +17,29 @@
                 <img src="{% static 'img/logo.png' %}" width="30" height="30" class="d-inline-block align-top" /> Photo Site
             </a>
         </nav>
-        <span class="d-flex justify-content-end mr-4 mb-2">
-            <div class="btn-group">
-                {% if user.is_authenticated %}
-                <button class="btn btn-outline-secondary dropdown-toggle text-secondary" type="button" data-toggle="dropdown" aria-expanded="false">
-                    Hello, {{ user.username|title }}
-                </button>
-                <div class="dropdown-menu">
-                    <a class="dropdown-item" href="{% url 'users:view_profile' user.id %}">{% bs_icon 'person-badge' %}{{ user.username|title }}'s Profile</a>
-                    <a class="dropdown-item" href="{% url 'users:logout' %}">{% bs_icon 'x-circle' %}Log out</a>
-                </div>
-                {% else %}
-                <button class="btn btn-outline-secondary btn-lg dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false">
-                    Sign in
-                </button>
-                <div class="dropdown-menu">
-                    <a class="dropdown-item" href="{% url 'users:register' %}">Register</a>
-                    <a class="dropdown-item" href="{% url 'users:login' %}">Log in</a>
-                </div>
-                {% endif %}
+        
+        <div class="btn-group float-right shadow bg-white rounded">
+            {% if user.is_authenticated %}
+            <button class="btn btn-outline-secondary dropdown-toggle text-secondary" type="button" data-toggle="dropdown" aria-expanded="false">
+                Hello, {{ user.username|title }}
+            </button>
+            <div class="dropdown-menu">
+                <a class="dropdown-item" href="{% url 'users:view_profile' user.id %}">{% bs_icon 'person-badge' %}{{ user.username|title }}'s Profile</a>
+                <a class="dropdown-item" href="{% url 'photo_site:add_photo' %}">{% bs_icon 'image-fill' %} Add Photo</a>
+                <a class="dropdown-item" href="{% url 'users:logout' %}">{% bs_icon 'x-circle' %}Log out</a>
             </div>
-        </span>
-        <main>
+            {% else %}
+            <button class="btn btn-outline-secondary btn-lg dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false">
+                Sign in
+            </button>
+            <div class="dropdown-menu">
+                <a class="dropdown-item" href="{% url 'users:register' %}">Register</a>
+                <a class="dropdown-item" href="{% url 'users:login' %}">Log in</a>
+            </div>
+            {% endif %}
+        </div>
+        <br />
+        <main class="mt-3">
             {% block content %}
             {% endblock content %}
             <br />

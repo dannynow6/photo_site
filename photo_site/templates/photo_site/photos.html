@@ -1,0 +1,30 @@
+{% extends "photo_site/base.html" %} {% load static %} {% load bootstrap4 %} {% load bootstrap_icons %}
+
+{% block title %}Photos{% endblock title %}
+
+{% block content %}
+<div class="container w-75">
+    <div class="jumbotron shadow-lg p-3 mb-5 bg-white rounded">
+        <h4 class="display-4 text-secondary text-center my-2">Photos</h4>
+    </div>
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb bg-white">
+            <li class="breadcrumb-item"><a href="{% url 'photo_site:index' %}">Home</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Photos</li>
+        </ol>
+    </nav>
+    <br />
+    {% for photo in photos %}
+        <div class="card" style="width: 18rem;">
+            <img src="{{ photo.image.url }}" class="card-img-top" alt="{{ photo.title }}" style="max-width:300px;max-height:300px;border-radius:20%;" />
+            <div class="card-body">
+               <p class="card-text text-secondary text-center">{{ photo.title }}</p>
+            </div>
+        </div>
+    {% empty %}
+        <h6 class="text-secondary text-center">Add a Photo</h6>
+        <br />
+        <a class="nav-link" href="{% url 'photo_site:add_photo' %}">{% bs_icon 'image-fill' %} Add Photo</a>
+    {% endfor %}
+</div>
+{% endblock content %}
