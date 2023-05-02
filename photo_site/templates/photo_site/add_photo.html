@@ -4,12 +4,11 @@
 
 {% block content %}
 <div class="container w-75">
-    <div class="jumbotron shadow-lg p-3 mb-5 bg-white rounded">
-        <h4 class="display-4 text-secondary text-center my-2">Add a Photo</h4>
-    </div>
+    <h4 class="display-4 text-secondary text-center my-2">Add a Photo</h4>
     <nav aria-label="breadcrumb">
         <ol class="breadcrumb bg-white">
             <li class="breadcrumb-item"><a href="{% url 'photo_site:index' %}">Home</a></li>
+            <li class="breadcrumb-item"><a href="{% url 'photo_site:photos' %}">Photos</a></li>
             <li class="breadcrumb-item active" aria-current="page">Add Photo</li>
         </ol>
     </nav>

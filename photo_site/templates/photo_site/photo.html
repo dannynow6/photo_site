@@ -1,0 +1,49 @@
+{% extends "photo_site/base.html" %} {% load static %} {% load bootstrap4 %} {% load bootstrap_icons %}
+
+{% block title %}Photo {{ photo.id }}{% endblock title %}
+
+{% block content %}
+<div class="container w-75">
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb bg-white">
+            <li class="breadcrumb-item"><a href="{% url 'photo_site:index' %}">Home</a></li>
+            <li class="breadcrumb-item"><a href="{% url 'photo_site:photos' %}">Photos</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Photo {{ photo.id }}</li>
+        </ol>
+    </nav>
+    <br />
+    
+    {% if photo.title %}
+    <h4 class="text-secondary text-center mb-3">{{ photo.title|title }}</h4>
+    {% else %}
+    <h4 class="text-secondary text-center mb-3">No title</h4>
+    {% endif %}
+    <div class="container w-75">
+        <span class="d-flex justify-content-center">
+            <img src="{{ photo.image.url }}" alt="{{ photo.title }}" style="max-width:300px;max-height:300px;border-radius:20%;" />
+        </span>
+        <br />
+        <div class="d-flex justify-content-center text-center text-secondary">
+            <p>{{ photo.description|capfirst }}</p>
+        </div>
+
+        <ul class="list-group">
+            {% if photo.type %}
+            <li class="list-group-item">{{ photo.type }}</li>
+            {% endif %}
+            {% if photo.location %}
+            <li class="list-group-item">Location: {{ photo.location|upper }}</li>
+            {% endif %}
+            {% if photo.camera and photo.lens %}
+            <li class="list-group-item">Shot with: {{ photo.camera|title }}, {{ photo.lens }}</li>
+            {% endif %}
+            {% if photo.year_taken %}
+            <li class="list-group-item">Year taken: {{ photo.year_taken }}</li>
+            {% endif %}
+            {% if photo.keywords %}
+            <li class="list-group-item">Keywords: {{ photo.keywords }}</li>
+            {% endif %}
+        </ul>
+    </div>
+</div>
+{% endblock content %}

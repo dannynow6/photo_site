@@ -29,8 +29,16 @@ def add_photo(request):
     context = {"form": form}
     return render(request, "photo_site/add_photo.html", context)
 
+
 def photos(request):
     """a page to view photos uploaded by users"""
     photos = Photo.objects.order_by("-date_added")
-    context = {"photos": photos} 
-    return render(request, "photo_site/photos.html", context) 
+    context = {"photos": photos}
+    return render(request, "photo_site/photos.html", context)
+
+
+def photo(request, photo_id):
+    """Show the details of a specific photo"""
+    photo = Photo.objects.get(id=photo_id)
+    context = {"photo": photo}
+    return render(request, "photo_site/photo.html", context)
