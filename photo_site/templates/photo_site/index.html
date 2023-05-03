@@ -6,7 +6,23 @@
 <div class="container w-75">
     <br />
     <div class="d-flex justify-content-end">
-        <button type="button" class="btn btn-outline-seconary mx-2 mb-2"><a class="text-secondary" href="{% url 'photo_site:photos' %}">{% bs_icon 'images' %} Photos</a></button>
+        <nav class="nav flex-column">
+            <a class="index-nav" href="{% url 'photo_site:photos' %}">Photos</a> 
+            <a class="index-nav" href="{% url 'photo_site:add_photo' %}">Add Photo</a>
+        </nav>
     </div>
+    <br /> 
+    <div class="d-flex justify-content-center">
+        <img src="{{ photo.image.url }}" alt="{{ photo.title }}" style="max-height:400px;max-width:400px;border-radius:25%;" />
+    </div>
+    <br />
+    <h5 class="text-center"><a class="photo-index" href="{% url 'photo_site:photo' photo.id %}">{{ photo.title|title }}</a></h5>
+    <br /> 
+    <div class="d-flex justify-content-center">
+        <img src="{{ photo2.image.url }}" alt="{{ photo2.title }}" style="max-height:400px;max-width:400px;border-radius:25%;" />
+    </div>
+    <br />
+    <h5 class="text-center"><a class="photo-index" href="{% url 'photo_site:photo' photo2.id %}">{{ photo2.title|title }}</a></h5>
+    
 </div>
 {% endblock content %}

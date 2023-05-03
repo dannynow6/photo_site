@@ -46,6 +46,11 @@
             <li class="list-group-item">Keywords: {{ photo.keywords }}</li>
             {% endif %}
         </ul>
+        <br />
+        {% if photo.owner == current_user %}
+        <button type="button" class="btn btn-outline-danger float-right"><a class="text-danger" href="{% url 'photo_site:edit_photo' photo.id %}">{% bs_icon 'pencil' %} Edit</a></button>
+        {% endif %}
     </div>
 </div>
+<br /> 
 {% endblock content %}
