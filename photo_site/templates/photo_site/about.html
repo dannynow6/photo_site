@@ -33,9 +33,10 @@
     </div>
     <br />
     <div class="container d-flex justify-content-around">
+        <a href="{% url 'photo_site:index' %}" alt="home"><img src="{% static 'img/logo.png' %}" alt="photo-site logo" style="max-height:40px;max-width=40px" /></a>
         <article class="text-center text-secondary">
             <p>
-                Email us: <a class="about-link" href="mailto:photo_site@example.com">Photo-Site</a>
+                <a class="about-link" href="mailto:photo_site@example.com">{% bs_icon 'envelope-at' size="1.25rem" %} Photo-Site</a>
             </p>
         </article>
         <article class="text-secondary text-center">
