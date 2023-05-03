@@ -49,7 +49,7 @@ def photos(request):
 
 def photo(request, photo_id):
     """Show the details of a specific photo"""
-    current_user = request.user 
+    current_user = request.user
     photo = Photo.objects.get(id=photo_id)
     context = {"photo": photo, "current_user": current_user}
     return render(request, "photo_site/photo.html", context)
