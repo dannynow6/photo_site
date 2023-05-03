@@ -79,5 +79,11 @@ def edit_photo(request, photo_id):
     return render(request, "photo_site/edit_photo.html", context)
 
 
-# Add a view for editing photos if photo is one current user created
-# possibly add a view my photos
+
+def about(request):
+    """An about page featuring basic site information for photo-site"""
+    photos = Photo.objects.all() 
+    x = random.randint(1, len(photos)) 
+    photo = Photo.objects.get(id=x) 
+    context = {'photo': photo} 
+    return render(request, "photo_site/about.html", context) 
