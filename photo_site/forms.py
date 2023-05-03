@@ -1,5 +1,5 @@
 from django import forms
-from .models import Photo
+from .models import Photo, Comment
 
 
 class PhotoForm(forms.ModelForm):
@@ -28,4 +28,16 @@ class PhotoForm(forms.ModelForm):
             "lens": "Lens Used",
             "keywords": "Keywords",
             "year_taken": "Year Taken",
+        }
+
+
+class CommentForm(forms.ModelForm):
+    """a form for creating a comment"""
+
+    class Meta:
+        model = Comment
+        fields = ("comment",)
+
+        labels = {
+            "comment": "Comment",
         }

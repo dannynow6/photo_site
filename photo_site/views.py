@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
-from .models import Photo
-from .forms import PhotoForm
+from .models import Photo, Comment
+from .forms import PhotoForm, CommentForm
 import random
 
 
@@ -51,7 +51,8 @@ def photo(request, photo_id):
     """Show the details of a specific photo"""
     current_user = request.user
     photo = Photo.objects.get(id=photo_id)
-    context = {"photo": photo, "current_user": current_user}
+    comments = photo.comment_set.order_by("-date_added") 
+    context = {"photo": photo, "current_user": current_user, "comments": comments}
     return render(request, "photo_site/photo.html", context)
 
 
@@ -79,11 +80,31 @@ def edit_photo(request, photo_id):
     return render(request, "photo_site/edit_photo.html", context)
 
 
-
 def about(request):
     """An about page featuring basic site information for photo-site"""
-    photos = Photo.objects.all() 
-    x = random.randint(1, len(photos)) 
-    photo = Photo.objects.get(id=x) 
-    context = {'photo': photo} 
-    return render(request, "photo_site/about.html", context) 
+    photos = Photo.objects.all()
+    x = random.randint(1, len(photos))
+    photo = Photo.objects.get(id=x)
+    context = {"photo": photo}
+    return render(request, "photo_site/about.html", context)
+
+
+@login_required
+def comment(request, photo_id):
+    """User add a new comment on a photo"""
+    photo = Photo.objects.get(id=photo_id)
+
+    if request.method != "POST":
+        # no data submitted - create a blank form
+        form = CommentForm()
+    else:
+        # POST data submitted and process data
+        form = CommentForm(request.POST)
+        if form.is_valid():
+            new_comment = form.save(commit=False)
+            new_comment.photo = photo
+            new_comment.owner = request.user
+            new_comment.save()
+            return redirect("photo_site:photo", photo_id=photo_id)
+    context = {"photo": photo, "form": form}
+    return render(request, "photo_site/comment.html", context)

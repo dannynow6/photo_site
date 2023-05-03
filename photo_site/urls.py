@@ -19,4 +19,6 @@ urlpatterns = [
     path("edit_photo/<int:photo_id>/", views.edit_photo, name="edit_photo"),
     # about page for photo site 
     path("about/", views.about, name="about"), 
+    # create a new comment on a photograph 
+    path("comment/<int:photo_id>/", views.comment, name="comment"), 
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

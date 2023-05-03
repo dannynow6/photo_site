@@ -47,9 +47,26 @@
             {% endif %}
         </ul>
         <br />
-        {% if photo.owner == current_user %}
-        <button type="button" class="btn btn-outline-danger float-right"><a class="text-danger" href="{% url 'photo_site:edit_photo' photo.id %}">{% bs_icon 'pencil' %} Edit</a></button>
-        {% endif %}
+        <div class="container d-flex justify-content-between">
+            <button type="button" class="btn btn-outline-secondary"><a class="text-secondary" href="{% url 'photo_site:comment' photo.id %}">{% bs_icon 'chat-square-text' %} Comment</a></button>
+        
+            {% if photo.owner == current_user %}
+            <button type="button" class="btn btn-outline-danger"><a class="text-danger" href="{% url 'photo_site:edit_photo' photo.id %}">{% bs_icon 'pencil' %} Edit</a></button>
+            {% endif %}
+        </div>
+        <br /> 
+        <ul class="list-group">
+            {% for comment in comments %}
+            <li class="list-group-item">
+                <article class="mx-3">
+                    <p class="text-secondary text-left">- {{ comment.comment }}</p>
+                    <p class="text-secondary text-center">{{ comment.owner|title }}</p>
+                </article>
+            </li>
+            {% empty %}
+            <li class="list-group-item">No Comments</li>
+            {% endfor %}
+        </ul>
     </div>
 </div>
 <br /> 
